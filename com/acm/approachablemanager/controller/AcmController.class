@@ -1,0 +1,64 @@
+// Source code is decompiled from a .class file using FernFlower decompiler.
+package com.acm.approachablemanager.controller;
+
+import com.acm.approachablemanager.entity.User;
+import com.acm.approachablemanager.service.AcmService;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+@Controller
+public class AcmController {
+   @Autowired
+   private AcmService service;
+
+   public AcmController() {
+   }
+
+   @GetMapping({"/"})
+   public String home(Model m) {
+      List<User> Acm = this.service.getAllAcm();
+      m.addAttribute("Acm", Acm);
+      return "index";
+   }
+
+   @GetMapping({"/addAcm"})
+   public String addAcmForm() {
+      return "add_Acm";
+   }
+
+   @PostMapping({"/register"})
+   public String Acmregister(@ModelAttribute User e, HttpSession session) {
+      System.out.println(e);
+      this.service.addAcm(e);
+      session.setAttribute("msg", "Project added Sucessfully");
+      return "redirect:/";
+   }
+
+   @GetMapping({"/edit/{id}"})
+   public String edit(@PathVariable int id, Model m) {
+      User e = this.service.getAcmById(id);
+      m.addAttribute("Acm", e);
+      return "edit";
+   }
+
+   @PostMapping({"/update"})
+   public String updateAcm(@ModelAttribute User e, HttpSession session) {
+      this.service.addAcm(e);
+      session.setAttribute("msg", "Acm data Update Sucessfully...");
+      return "redirect:/";
+   }
+
+   @GetMapping({"/delete/{id}"})
+   public String deleteAcm(@PathVariable int id, HttpSession session) {
+      this.service.deleteAcm(id);
+      session.setAttribute("msg", "Acm data Delete Sucessfully...");
+      return "redirect:/";
+   }
+}
