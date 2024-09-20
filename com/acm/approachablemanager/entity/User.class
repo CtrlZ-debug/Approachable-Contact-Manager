@@ -1,0 +1,89 @@
+// Source code is decompiled from a .class file using FernFlower decompiler.
+package com.acm.approachablemanager.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(
+   name = "ACM_System"
+)
+public class User {
+   @Id
+   @GeneratedValue(
+      strategy = GenerationType.IDENTITY
+   )
+   private int id;
+   private String name;
+   private String address;
+   private String email;
+   private String phoneno;
+   private int salary;
+   private String action;
+
+   public User() {
+   }
+
+   public int getId() {
+      return this.id;
+   }
+
+   public void setId(int id) {
+      this.id = id;
+   }
+
+   public String getName() {
+      return this.name;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+
+   public String getAddress() {
+      return this.address;
+   }
+
+   public void setAddress(String address) {
+      this.address = address;
+   }
+
+   public String getEmail() {
+      return this.email;
+   }
+
+   public void setEmail(String email) {
+      this.email = email;
+   }
+
+   public String getPhoneno() {
+      return this.phoneno;
+   }
+
+   public void setPhoneno(String phoneno) {
+      this.phoneno = phoneno;
+   }
+
+   public int getSalary() {
+      return this.salary;
+   }
+
+   public void setSalary(int salary) {
+      this.salary = salary;
+   }
+
+   public String getAction() {
+      return this.action;
+   }
+
+   public void setAction(String action) {
+      this.action = action;
+   }
+
+   public String toString() {
+      return "Project [id=" + this.id + ", name=" + this.name + ", address=" + this.address + ", email=" + this.email + ", phoneno=" + this.phoneno + ", salary=" + this.salary + ", action=" + this.action + "]";
+   }
+}
