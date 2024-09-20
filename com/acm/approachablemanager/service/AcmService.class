@@ -1,0 +1,35 @@
+// Source code is decompiled from a .class file using FernFlower decompiler.
+package com.acm.approachablemanager.service;
+
+import com.acm.approachablemanager.entity.User;
+import com.acm.approachablemanager.repository.AcmRepo;
+import java.util.List;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class AcmService {
+   @Autowired
+   private AcmRepo repo;
+
+   public AcmService() {
+   }
+
+   public void addAcm(User e) {
+      this.repo.save(e);
+   }
+
+   public List<User> getAllAcm() {
+      return this.repo.findAll();
+   }
+
+   public User getAcmById(int id) {
+      Optional<User> e = this.repo.findById(id);
+      return e.isPresent() ? (User)e.get() : null;
+   }
+
+   public void deleteAcm(int id) {
+      this.repo.deleteById(id);
+   }
+}
